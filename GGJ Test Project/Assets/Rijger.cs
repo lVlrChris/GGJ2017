@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rijger : MonoBehaviour
 {
-    public Fish fish;
+    public GameObject fish;
     public int Speed = 1;
     public GameObject Schaduw;
     public bool Attacking = false;
@@ -15,8 +15,9 @@ public class Rijger : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(("z")))
+        if (Input.GetKey(("z")) && !Attacking)
         {
+            fish = GameObject.FindGameObjectWithTag("Fish");
             Schaduw.transform.position = fish.gameObject.transform.position;
             Attacking = true;
             Debug.Log("ATTACK");
