@@ -7,6 +7,8 @@ TagManager:
   - Bullet
   - Sonar
   - Fish
+  - Shadow
+  - Bird
   layers:
   - Default
   - TransparentFX

@@ -35,13 +35,17 @@ public class Sonar : MonoBehaviour
             SonarActive = false;
         }
 
-        if (!SonarActive)
+        if (!SonarActive && fish != null)
         {
-          //  float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
-          //  Debug.Log(distance);
-            fish.gameObject.transform.LookAt(gameObject.transform);
-            fish.gameObject.transform.Rotate(0, 180, 0);
-            fish.gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+            float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
+            Debug.Log(distance);
+            if (distance <= 4)
+            {
+                fish.gameObject.transform.LookAt(gameObject.transform);
+                fish.gameObject.transform.Rotate(0, 180, 0);
+                fish.gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+            }
+
         }
 
     }
