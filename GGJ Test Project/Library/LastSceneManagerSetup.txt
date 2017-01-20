@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Owens scene.unity
-  isLoaded: 1
-  isActive: 1
