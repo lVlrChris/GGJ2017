@@ -38,7 +38,7 @@ public class Sonar : MonoBehaviour
         if (!SonarActive && fish != null)
         {
             float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
-            Debug.Log(distance);
+            //Debug.Log(distance);
             if (distance <= 4)
             {
                 fish.gameObject.transform.LookAt(gameObject.transform);

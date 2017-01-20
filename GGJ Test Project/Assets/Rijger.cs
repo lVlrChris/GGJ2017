@@ -19,7 +19,7 @@ public class Rijger : MonoBehaviour
         {
             Schaduw.transform.position = fish.gameObject.transform.position;
             Attacking = true;
-
+            Debug.Log("ATTACK");
         }
 	    if (Attacking)
 	    {
