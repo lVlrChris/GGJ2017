@@ -5,24 +5,29 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int MovementSpeed = 1;
-    public int RotationSpeed = 10;
-    public int BulletCooldown = 2;
+    public int RotationSpeed = 1000;
+    public int BulletCooldown = 1;
     private bool CanFireBullet = true;
     private float BulletTimestamp;
 
     public GameObject Bullet;
-
+    public Sonar SonarObject;
+    
 
     private GameObject Submarine;
 	// Use this for initialization
 	void Start ()
 	{
 	    Submarine = gameObject;
-       // Bullet = GameObject.FindGameObjectWithTag("Bullet");
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        // SonarObject = Instantiate(SonarObject, Submarine.transform.position, transform.rotation);
+
+        //Sonar.SetActive(false);
+        //Bullet = GameObject.FindGameObjectWithTag("Bullet");
+
+    }
+
+    // Update is called once per frame
+    void Update ()
 	{
 
 	    if (BulletTimestamp <= Time.time && !CanFireBullet)
@@ -60,9 +65,12 @@ public class Player : MonoBehaviour
         //sonar
 	    if (Input.GetKey(("e")))
 	    {
-
-	        
+            SonarObject.SonarActive = true;
+            Debug.Log("Sonarr active");
+        }
+	    if (Input.GetKeyUp("e"))
+	    {
+	        SonarObject.SonarActive = false;
 	    }
-
     }
 }
