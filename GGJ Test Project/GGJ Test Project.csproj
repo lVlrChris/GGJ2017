@@ -78,6 +78,7 @@
     <Compile Include="Assets\Bullet.cs" />
     <Compile Include="Assets\Fish.cs" />
     <Compile Include="Assets\Player.cs" />
+    <Compile Include="Assets\Rijger.cs" />
     <Compile Include="Assets\Sonar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
