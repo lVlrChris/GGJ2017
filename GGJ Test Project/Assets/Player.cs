@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
 	    if (BulletTimestamp <= Time.time && !CanFireBullet)
 	    {
 	        CanFireBullet = true;
-            Debug.Log("Cooldown reset");
 	    }
 
 
@@ -57,7 +56,6 @@ public class Player : MonoBehaviour
 	    {
             CanFireBullet = false;
             BulletTimestamp = Time.time + BulletCooldown;
-            Debug.Log("fired");
 	        
             Instantiate(Bullet, Submarine.transform.position, transform.rotation);
         }

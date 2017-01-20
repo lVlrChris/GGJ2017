@@ -17,12 +17,10 @@ public class Fish : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         Debug.Log(gameObject.tag);
-        if (col.gameObject.CompareTag("Sonar"))
+        if (col.gameObject.CompareTag("Bullet"))
         {
-            Debug.Log("SONAR DETECTED");
-            Vector3 direction = transform.position - col.gameObject.transform.position;
-            direction.Normalize();
-
+            Destroy(col.gameObject);
         }
+
     }
 }

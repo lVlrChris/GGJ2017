@@ -38,6 +38,14 @@ public class Sonar : MonoBehaviour
 
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        Debug.Log(other.tag);
+        if (other.CompareTag("Fish") && SonarActive)
+        {
+            other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, 1 * Time.deltaTime);
+        }
+    }
 
 }
         //transform.position = player.gameObject.transform.position;
