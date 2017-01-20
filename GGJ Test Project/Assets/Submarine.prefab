@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SonarActive: 0
   player: {fileID: 114050065485574080}
+  fish: {fileID: 0}
 --- !u!135 &135480138697469428
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ public class Sonar : MonoBehaviour
 {
     public bool SonarActive = false;
     public Player player;
+    public Fish fish;
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +35,14 @@ public class Sonar : MonoBehaviour
             SonarActive = false;
         }
 
-
+        if (!SonarActive)
+        {
+          //  float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
+          //  Debug.Log(distance);
+            fish.gameObject.transform.LookAt(gameObject.transform);
+            fish.gameObject.transform.Rotate(0, 180, 0);
+            fish.gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+        }
 
     }
 
@@ -45,6 +53,8 @@ public class Sonar : MonoBehaviour
         {
             other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, 1 * Time.deltaTime);
         }
+
+
     }
 
 }
