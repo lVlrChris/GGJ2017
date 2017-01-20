@@ -63,14 +63,6 @@ public class Player : MonoBehaviour
         }
 
         //sonar
-	    if (Input.GetKey(("e")))
-	    {
-            SonarObject.SonarActive = true;
-            Debug.Log("Sonarr active");
-        }
-	    if (Input.GetKeyUp("e"))
-	    {
-	        SonarObject.SonarActive = false;
-	    }
+
     }
 }

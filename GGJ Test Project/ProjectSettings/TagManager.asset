@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Sonar
+  - Fish
   layers:
   - Default
   - TransparentFX

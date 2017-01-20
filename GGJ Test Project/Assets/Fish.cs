@@ -1,0 +1,28 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Fish : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+    void OnCollisionEnter(Collision col)
+    {
+        Debug.Log(gameObject.tag);
+        if (col.gameObject.CompareTag("Sonar"))
+        {
+            Debug.Log("SONAR DETECTED");
+            Vector3 direction = transform.position - col.gameObject.transform.position;
+            direction.Normalize();
+
+        }
+    }
+}

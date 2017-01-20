@@ -16,18 +16,28 @@ public class Sonar : MonoBehaviour
     // Update is called once per frame
     void Update ()
 	{
-        Debug.Log(SonarActive);
 	    if (SonarActive)
 	    {
-            Debug.Log("blo");
-
             GetComponent<Renderer>().enabled = true;
         }
 	    else
 	    {
             GetComponent<Renderer>().enabled = false;
         }
+
+        if (Input.GetKeyDown(("e")))
+        {
+            SonarActive = true;
+        }
+        if (Input.GetKeyUp("e"))
+        {
+            SonarActive = false;
+        }
+
+
+
     }
+
 
 }
         //transform.position = player.gameObject.transform.position;
