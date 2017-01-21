@@ -45,13 +45,14 @@ public class Fish : MonoBehaviour
         DateTime currentDate = DateTime.Now;
         long elapsedTicks = currentDate.Ticks - LastScared.Ticks;
         TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-        Debug.Log(elapsedSpan.TotalSeconds);
 	    if (elapsedSpan.TotalSeconds >= ScaredCooldown)
 	    {
 	        IsScared = false;
-	    }
+            gameObject.transform.LookAt(OriginPoint);
 
-	    if (Stamina > 100) Stamina = 100;
+        }
+
+        if (Stamina > 100) Stamina = 100;
 
 	    if (IsScared)
 	    {

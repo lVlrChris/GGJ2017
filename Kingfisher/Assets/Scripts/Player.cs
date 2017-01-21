@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
 	    {
 	     //   Submarine.transform.position = Vector3.Lerp(StartPosition.position, StartPosition.position, JourneyFraction);
 	        Submarine.transform.Translate(Vector3.forward * MovementSpeed * Time.deltaTime);
+            gameObject.transform.GetChild(0).transform.GetChild(3).gameObject.transform.Rotate(Vector3.right * 30 * Time.deltaTime);
 	    }
 	    if (Input.GetKey(("a")))
 	    {
