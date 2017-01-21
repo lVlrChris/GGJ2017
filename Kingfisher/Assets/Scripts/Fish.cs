@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using XboxCtrlrInput;
@@ -23,6 +24,7 @@ public class Fish : MonoBehaviour
 
     public Vector3 lilyPosition;
 
+    private int speed = 1;
 
     // Use this for initialization
     void Start ()
@@ -81,7 +83,7 @@ public class Fish : MonoBehaviour
             {
                 Debug.Log("het ken");
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
-                    1 * Time.deltaTime / 10);
+                    speed * Time.deltaTime / 10);
             }
         }
     }
@@ -148,7 +150,8 @@ public class Fish : MonoBehaviour
         {
             Debug.Log("PLS DOE HET NOUUU");
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+            // Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+            speed = 0;
             transform.Translate(lilyPosition);
         }
 
