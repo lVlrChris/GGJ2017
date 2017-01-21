@@ -22,9 +22,12 @@ public class Rijger : MonoBehaviour
         if (XCI.GetButton(XboxButton.Back) && !Attacking)
         {
             fish = GameObject.FindGameObjectWithTag("Fish");
-            Schaduw.transform.position = fish.gameObject.transform.position;
-            Attacking = true;
-            Debug.Log("ATTACK?");
+            if (fish != null)
+            {
+                Schaduw.transform.position = fish.gameObject.transform.position;
+                Attacking = true;
+                Debug.Log("ATTACK?");
+            }
         }
 	    if (Attacking)
 	    {

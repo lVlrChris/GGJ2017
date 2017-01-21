@@ -41,11 +41,11 @@ public class Sonar : MonoBehaviour
 
 
         //if (Input.GetKeyDown(("space")))
-        if(XCI.GetButtonDown(XboxButton.RightBumper))
+        if(XCI.GetButtonDown(XboxButton.RightBumper) || Input.GetKeyDown(("space")))
         {
             SonarActive = true;
         }
-        if (XCI.GetButtonUp(XboxButton.RightBumper))
+        if (XCI.GetButtonUp(XboxButton.RightBumper) || Input.GetKeyUp(("space")))
         {
             SonarActive = false;
         }
