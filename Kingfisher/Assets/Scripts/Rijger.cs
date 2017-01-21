@@ -73,7 +73,7 @@ public class Rijger : MonoBehaviour
         // 
        // gameObject.transform.Translate(Vector3.right * Time.deltaTime * Speed);
 
-        shadow.transform.localScale += new Vector3(0.0015f, 0f, 0.0015f);
+        shadow.transform.localScale += new Vector3(0.000015f, 0f, 0.000015f);
         float distance = Vector3.Distance(shadow.gameObject.transform.position, currentTarget.gameObject.transform.position);
         if (distance < 1)
         {
