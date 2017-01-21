@@ -11,10 +11,17 @@ public class Fish : MonoBehaviour
     public bool IsScared = false;
     public bool AtOrigin = false;
     public float ScaredCooldown = 10.0f;
+    private float LilyCooldown = 4.0f;
+
     public DateTime LastScared;
     public bool Following = false;
 
+    public bool AtLily = false;
     public float Stamina = 100;
+
+    public bool ignorePlayer = false;
+
+    public Vector3 lilyPosition;
 
 
     // Use this for initialization
@@ -29,7 +36,56 @@ public class Fish : MonoBehaviour
         }
 
     }
-	
+
+    void CheckSonar()
+    {
+        if (XCI.GetButtonUp(XboxButton.RightBumper) || Input.GetKeyUp(("space")))
+        {
+            Following = false;
+        }
+
+    }
+
+    void CheckIfScared()
+    {
+        if (IsScared)
+        {
+
+
+            if (gameObject.transform.position.x < 3.5 && gameObject.transform.position.z < 2.6)
+            {
+                gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+            }
+            Stamina -= 0.01f;
+            GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
+            ScaredCooldown = 10;
+            AtOrigin = false;
+        }
+    }
+
+    void CheckCooldown(float timer)
+    {
+        
+    }
+
+    void CheckIfFollowing()
+    {
+        if (Following || !ignorePlayer)
+        {
+            Debug.Log(("VOLGEN"));
+            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            transform.transform.LookAt(player.transform);
+
+            var distance = Vector3.Distance(transform.position, player.GetComponent<Renderer>().bounds.center);
+            if (distance > 10)
+            {
+                Debug.Log("het ken");
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
+                    1 * Time.deltaTime / 10);
+            }
+        }
+    }
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -41,16 +97,26 @@ public class Fish : MonoBehaviour
              gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
          }
          */
+        DateTime currentDate = DateTime.Now;
 
-        if (XCI.GetButtonUp(XboxButton.RightBumper) || Input.GetKeyUp(("space")))
+
+
+        long elapsedLilyTicks = currentDate.Ticks - LastScared.Ticks;
+        TimeSpan elapsedLilySpan = new TimeSpan(elapsedLilyTicks);
+
+        if (elapsedLilySpan.TotalSeconds >= LilyCooldown)
         {
-            Following = false;
+
+            AtLily = false;
+            ignorePlayer = false;
         }
 
 
 
+        CheckSonar();
+
+
         //als vis niet bang is ga na 10 sec terug naar beginpunt
-        DateTime currentDate = DateTime.Now;
         long elapsedTicks = currentDate.Ticks - LastScared.Ticks;
         TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
 	    if (elapsedSpan.TotalSeconds >= ScaredCooldown)
@@ -65,45 +131,28 @@ public class Fish : MonoBehaviour
 
         if (Stamina > 100) Stamina = 100;
 
-	    if (IsScared)
-	    {
+        CheckIfScared();
 
+        CheckIfFollowing();
 
-            if (gameObject.transform.position.x < 3.5 && gameObject.transform.position.z < 2.6)
-            {
-                gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
-            }
-            Stamina -= 0.01f;
-            GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
-            ScaredCooldown = 10;
-	        AtOrigin = false;
-	    }
-	    if (Following)
-	    {
-            Debug.Log(("VOLGEN"));
-	        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            transform.transform.LookAt(player.transform);
+        // if (gameObject.transform.position == OriginPoint)
+        // {
+        //   AtOrigin = true;
+        // }
+        //	    if (AtOrigin)
+        //  {
+        //       // transform.Rotate((new Vector3(0, 2, 0) * 2 * Time.deltaTime));
+        // transform.Translate(Vector3.forward * 1 * Time.deltaTime);
+        // }
+        if (AtLily)
+        {
+            Debug.Log("PLS DOE HET NOUUU");
+            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+            transform.Translate(lilyPosition);
+        }
 
-            var distance = Vector3.Distance(transform.position, player.GetComponent<Renderer>().bounds.center);
-            Debug.Log("DE AFSTAND IS " + distance);
-	        if (distance > 10)
-	        {
-	            Debug.Log("het ken");
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
-	                1 * Time.deltaTime / 10);
-	        }
-	    }
-
-	   // if (gameObject.transform.position == OriginPoint)
-	   // {
-	     //   AtOrigin = true;
-	   // }
-	    if (AtOrigin)
-	    {
-	       // transform.Rotate((new Vector3(0, 2, 0) * 2 * Time.deltaTime));
-	       // transform.Translate(Vector3.forward * 1 * Time.deltaTime);
-	    }
-	}
+    }
 
     void OnTriggerEnter(Collider col)
     {
