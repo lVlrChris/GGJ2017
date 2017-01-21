@@ -13,12 +13,14 @@ public class Rijger : MonoBehaviour
 
     public GameObject[] ListOfFish;
     private GameObject currentTarget;
-
+    private Vector3 startPosition;
 
 	// Use this for initialization
 	void Start () {
 		shadow = GameObject.FindGameObjectWithTag("Shadow");
 	    currentTarget = PickRandomTarget();
+	    startPosition = transform.position;
+        Debug.Log("START POSITION   " + startPosition);
 	}
 	
 	// Update is called once per frame
@@ -27,14 +29,17 @@ public class Rijger : MonoBehaviour
         if ((XCI.GetButton(XboxButton.Back)|| Input.GetKey(("z"))) && !Attacking)
         {
 
-            Debug.Log("DE VIS IS NU " + currentTarget.name);
-
+            
             //fish = GameObject.FindGameObjectWithTag("Fish");
             if (currentTarget != null)
             {
                 //shadow.transform.position = currentTarget.gameObject.transform.position;
                 Attacking = true;
-                Debug.Log("ATTACK?");
+                Debug.Log("ATTACKKING " + currentTarget);
+            }
+            else
+            {
+                currentTarget = PickRandomTarget();
             }
         }
 	    if (Attacking)
@@ -44,6 +49,13 @@ public class Rijger : MonoBehaviour
 	    if (Retreating)
 	    {
 	        Retreat();
+	    }
+
+	    if (transform.position.x >= 7)
+	    {
+            Debug.Log("JAJAJAJAJAJAJAJA");
+            transform.position = (startPosition);
+	        Retreating = false;
 	    }
     }
 
@@ -64,13 +76,14 @@ public class Rijger : MonoBehaviour
 
     void Retreat()
     {
-        if (shadow.transform.localScale.x > 0)
-        {
-            shadow.transform.localScale -= new Vector3(0.02f, 0f, 0.02f);
-        }
+
+        //shadow.transform.localScale -= new Vector3(0.02f, 0f, 0.02f);
+        shadow.transform.Translate(Vector3.right * (Speed * 2) * Time.deltaTime);
         gameObject.transform.Translate(new Vector3(1,1,0) * (Speed * 2) * Time.deltaTime);
 
     }
+
+    
 
     void OnTriggerStay(Collider other)
     {
@@ -81,6 +94,10 @@ public class Rijger : MonoBehaviour
             Destroy(other.gameObject);
             Retreating = true;
             Attacking = false;
+            if (ListOfFish.Length <0)
+            {
+                Application.Quit();
+            }
 
         }
         if (other.CompareTag("Bird"))
