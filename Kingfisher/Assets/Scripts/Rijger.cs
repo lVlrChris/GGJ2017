@@ -37,10 +37,16 @@ public class Rijger : MonoBehaviour
     void Attack()
     {
         Schaduw.transform.position = Vector3.MoveTowards(Schaduw.transform.position, fish.gameObject.transform.position, Speed * Time.deltaTime);
-       // gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Schaduw.gameObject.transform.position, Speed * Time.deltaTime /5 );
+        // 
+        gameObject.transform.Translate(Vector3.right * Time.deltaTime * Speed);
 
         Schaduw.transform.localScale += new Vector3(0.0015f, 0f, 0.0015f);
-        
+        float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
+        if (distance < 7)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Schaduw.gameObject.transform.position, (Speed * 2) * Time.deltaTime);
+        }
+
     }
 
     void Retreat()
@@ -48,15 +54,21 @@ public class Rijger : MonoBehaviour
         if (Schaduw.transform.localScale.x > 0)
         {
             Schaduw.transform.localScale -= new Vector3(0.02f, 0f, 0.02f);
-    }
         }
+        gameObject.transform.Translate(new Vector3(1,1,0) * Speed * Time.deltaTime);
+
+    }
 
     void OnTriggerStay(Collider other)
     {
         Debug.Log(other.tag);
         if (other.CompareTag("Fish"))
         {
+
             Destroy(other.gameObject);
+            Retreating = true;
+            Attacking = false;
+
         }
         if (other.CompareTag("Bird"))
         {
