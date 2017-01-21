@@ -7,7 +7,6 @@ using XboxCtrlrInput;
 public class Sonar : MonoBehaviour
 {
     public bool SonarActive = false;
-    public Player player;
     public Fish fish;
     public ParticleSystem particles;
 	// Use this for initialization

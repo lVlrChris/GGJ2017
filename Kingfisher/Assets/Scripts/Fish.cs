@@ -29,7 +29,8 @@ public class Fish : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
         //Debug.Log(distance);
         /* if (distance <= 4)
          {
