@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Fish : MonoBehaviour
 {
-    public GameObject Rocks;
     public Vector3 OriginPoint;
     public bool IsScared = false;
     public bool AtOrigin = false;
@@ -31,7 +30,6 @@ public class Fish : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        float distance = Vector3.Distance(Rocks.gameObject.transform.position, gameObject.transform.position);
         //Debug.Log(distance);
         /* if (distance <= 4)
          {

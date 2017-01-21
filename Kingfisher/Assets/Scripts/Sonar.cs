@@ -2,19 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class Sonar : MonoBehaviour
 {
     public bool SonarActive = false;
     public Player player;
     public Fish fish;
-    private ParticleSystem particles;
+    public ParticleSystem particles;
 	// Use this for initialization
 	void Start () {
         GetComponent<Renderer>().enabled = false;
-        ParticleSystem particles = GameObject.Find("PS_Sonar").GetComponent<ParticleSystem>();
 
-    }
+	}
+
+
+
 
     // Update is called once per frame
     void Update ()
@@ -22,21 +25,27 @@ public class Sonar : MonoBehaviour
 	    if (SonarActive)
 	    {
             //GetComponent<Renderer>().enabled = true;
-            particles.Play();
-            GetComponent<Collider>().enabled = true;
+	        if (!particles.isEmitting)
+	        {
+	            particles.enableEmission = true;
+	            particles.Play();
+	        }
+	        GetComponent<Collider>().enabled = true;
 	    }
 	    else
 	    {
-            particles.enableEmission = false;
+           // particles.enableEmission = false;
             GetComponent<Collider>().enabled = false;
 
 	    }
 
-        if (Input.GetKeyDown(("space")))
+
+        //if (Input.GetKeyDown(("space")))
+        if(XCI.GetButtonDown(XboxButton.RightBumper) || Input.GetKeyDown(("space")))
         {
             SonarActive = true;
         }
-        if (Input.GetKeyUp("space"))
+        if (XCI.GetButtonUp(XboxButton.RightBumper) || Input.GetKeyUp(("space")))
         {
             SonarActive = false;
         }
@@ -51,10 +60,10 @@ public class Sonar : MonoBehaviour
                 fish.LastScared = DateTime.Now;
                 fish.gameObject.transform.LookAt(gameObject.transform);
                 fish.gameObject.transform.Rotate(0, 180, 0);
-                if (fish.gameObject.transform.position.x < 3.5 && fish.gameObject.transform.position.z < 2.6)
-                {
+               if (fish.gameObject.transform.position.x < 3.5 && fish.gameObject.transform.position.z < 2.6)
+               {
                     fish.gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
-                }
+               }
             }
         }
 
@@ -65,6 +74,7 @@ public class Sonar : MonoBehaviour
         Debug.Log(other.tag);
         if (other.CompareTag("Fish") && SonarActive)
         {
+            fish.gameObject.transform.LookAt(gameObject.transform);
             other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, 1 * Time.deltaTime /2);
             other.gameObject.transform.rotation = transform.rotation;
         }

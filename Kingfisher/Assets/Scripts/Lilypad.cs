@@ -19,7 +19,6 @@ public class Lilypad : MonoBehaviour
 	}
     void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.tag);
         if (other.CompareTag("Fish"))
         {
             Debug.Log("LILYPAAAD");

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class Rijger : MonoBehaviour
 {
@@ -17,12 +18,16 @@ public class Rijger : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(("z")) && !Attacking)
+        //if (Input.GetKey(("z")) && !Attacking)
+        if ((XCI.GetButton(XboxButton.Back)|| Input.GetKey(("z"))) && !Attacking)
         {
             fish = GameObject.FindGameObjectWithTag("Fish");
-            Schaduw.transform.position = fish.gameObject.transform.position;
-            Attacking = true;
-            Debug.Log("ATTACK");
+            if (fish != null)
+            {
+                Schaduw.transform.position = fish.gameObject.transform.position;
+                Attacking = true;
+                Debug.Log("ATTACK?");
+            }
         }
 	    if (Attacking)
 	    {
@@ -42,7 +47,7 @@ public class Rijger : MonoBehaviour
 
         Schaduw.transform.localScale += new Vector3(0.0015f, 0f, 0.0015f);
         float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
-        if (distance < 7)
+        if (distance < 10)
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Schaduw.gameObject.transform.position, (Speed * 2) * Time.deltaTime);
         }
