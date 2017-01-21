@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rijger : MonoBehaviour
 {
     public GameObject fish;
-    public int Speed = 1;
+    public int Speed = 200;
     public GameObject Schaduw;
     public bool Attacking = false;
     public bool Retreating = false;
@@ -35,15 +35,20 @@ public class Rijger : MonoBehaviour
 
     void Attack()
     {
-        Schaduw.transform.position = Vector3.MoveTowards(Schaduw.transform.position, fish.gameObject.transform.position, Speed * Time.deltaTime / 5);
+        Schaduw.transform.position = Vector3.MoveTowards(Schaduw.transform.position, fish.gameObject.transform.position, Speed * Time.deltaTime);
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Schaduw.gameObject.transform.position, Speed * Time.deltaTime /5 );
-        Schaduw.transform.localScale += new Vector3(0.005f, 0f, 0.005f);
+
+            Schaduw.transform.localScale += new Vector3(0.001f, 0f, 0.001f);
+        
     }
 
     void Retreat()
     {
-        Schaduw.transform.localScale -= new Vector3(0.005f, 0f, 0.005f);
+        if (Schaduw.transform.localScale.x > 0)
+        {
+            Schaduw.transform.localScale -= new Vector3(0.02f, 0f, 0.02f);
     }
+        }
 
     void OnTriggerStay(Collider other)
     {

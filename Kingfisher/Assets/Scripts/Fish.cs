@@ -49,13 +49,11 @@ public class Fish : MonoBehaviour
 
 	    if (IsScared)
 	    {
-            Debug.Log("scared?!?");
 	        ScaredCooldown = 10;
 	        AtOrigin = false;
 	    }
 	    if (!IsScared )
 	    {
-            Debug.Log("not scared");
 
             transform.position = Vector3.MoveTowards(transform.position, OriginPoint, 1 * Time.deltaTime);
 	    }
