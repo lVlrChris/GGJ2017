@@ -16,6 +16,7 @@ public class Rijger : MonoBehaviour
     private Fish currentTarget;
     private Vector3 startPosition;
     private Vector3 shadowStartPosition;
+    private Vector3 shadowSize;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class Rijger : MonoBehaviour
         Debug.Log("START POSITION   " + startPosition);
 
 	    shadowStartPosition = shadow.transform.position;
+	    shadowSize = shadow.transform.localScale;
 	}
 	
 	// Update is called once per frame
@@ -61,7 +63,7 @@ public class Rijger : MonoBehaviour
             transform.position = (startPosition);
 	        Retreating = false;
 	        shadow.transform.position = (shadowStartPosition);
-
+	        shadow.transform.localScale = shadowSize;
 	    }
     }
 
