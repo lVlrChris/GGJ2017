@@ -74,6 +74,7 @@ public class Sonar : MonoBehaviour
         Debug.Log(other.tag);
         if (other.CompareTag("Fish") && SonarActive)
         {
+            fish.gameObject.transform.LookAt(gameObject.transform);
             other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, 1 * Time.deltaTime /2);
             other.gameObject.transform.rotation = transform.rotation;
         }
