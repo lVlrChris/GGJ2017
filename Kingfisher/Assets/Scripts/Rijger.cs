@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using XboxCtrlrInput;
 
@@ -11,9 +12,10 @@ public class Rijger : MonoBehaviour
     public bool Attacking = false;
     public bool Retreating = false;
 
-    public GameObject[] ListOfFish;
-    private GameObject currentTarget;
+    public List<Fish> ListOfFish = new List<Fish>();
+    private Fish currentTarget;
     private Vector3 startPosition;
+    private Vector3 shadowStartPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +23,8 @@ public class Rijger : MonoBehaviour
 	    currentTarget = PickRandomTarget();
 	    startPosition = transform.position;
         Debug.Log("START POSITION   " + startPosition);
+
+	    shadowStartPosition = shadow.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -56,6 +60,8 @@ public class Rijger : MonoBehaviour
             Debug.Log("JAJAJAJAJAJAJAJA");
             transform.position = (startPosition);
 	        Retreating = false;
+	        shadow.transform.position = (shadowStartPosition);
+
 	    }
     }
 
@@ -90,11 +96,16 @@ public class Rijger : MonoBehaviour
         Debug.Log(other.tag);
         if (other.CompareTag("Fish"))
         {
-
+            ListOfFish.Remove(other.GetComponent<Fish>());
+            foreach (var o in ListOfFish)
+            {
+                Debug.Log("list item " + o.name);
+            }
+            Debug.Log("SIZE VAN LIST " + ListOfFish);
             Destroy(other.gameObject);
             Retreating = true;
             Attacking = false;
-            if (ListOfFish.Length <0)
+            if (ListOfFish.Count <= 0)
             {
                 Application.Quit();
             }
@@ -108,10 +119,10 @@ public class Rijger : MonoBehaviour
 
     }
 
-    GameObject PickRandomTarget()
+    Fish PickRandomTarget()
     {
-        var randomIndex = Random.Range(0, ListOfFish.Length);
-        currentTarget = ListOfFish[randomIndex];
+        var randomIndex = Random.Range(0, ListOfFish.Count);
+        currentTarget = ListOfFish.ElementAt(randomIndex);
         return currentTarget;
     }
 
