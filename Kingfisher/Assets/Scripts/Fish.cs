@@ -82,7 +82,16 @@ public class Fish : MonoBehaviour
 	    {
             Debug.Log(("VOLGEN"));
 	        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 1 * Time.deltaTime);
+            transform.transform.LookAt(player.transform);
+
+            var distance = Vector3.Distance(transform.position, player.GetComponent<Renderer>().bounds.center);
+            Debug.Log("DE AFSTAND IS " + distance);
+	        if (distance > 10)
+	        {
+	            Debug.Log("het ken");
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
+	                1 * Time.deltaTime / 10);
+	        }
 	    }
 
 	   // if (gameObject.transform.position == OriginPoint)
