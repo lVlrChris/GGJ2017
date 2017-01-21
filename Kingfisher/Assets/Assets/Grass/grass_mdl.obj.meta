@@ -1,15 +1,17 @@
 fileFormatVersion: 2
-guid: e1cde44d3133db6409def83fddd9550c
-timeCreated: 1485006721
+guid: bf30226a10d391245aeaf3a14d2b26b9
+timeCreated: 1485010815
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Plane002
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: plant_helofyt_single
+    400002: Plane002
+    2300000: Plane002
+    3300000: Plane002
+    4300000: Plane002
   materials:
     importMaterials: 1
     materialName: 0
