@@ -51,6 +51,8 @@ public class Fish : MonoBehaviour
 	        IsScared = false;
 	    }
 
+	    if (Stamina > 100) Stamina = 100;
+
 	    if (IsScared)
 	    {
 	        Stamina -= 0.01f;
