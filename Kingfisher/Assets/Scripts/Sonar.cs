@@ -8,13 +8,15 @@ public class Sonar : MonoBehaviour
     public bool SonarActive = false;
     public Player player;
     public Fish fish;
-    private ParticleSystem particles;
+    public ParticleSystem particles;
 	// Use this for initialization
 	void Start () {
         GetComponent<Renderer>().enabled = false;
-        particles = GameObject.Find("PS_Sonar").GetComponent<ParticleSystem>();
 
-    }
+	}
+
+
+
 
     // Update is called once per frame
     void Update ()
@@ -22,13 +24,16 @@ public class Sonar : MonoBehaviour
 	    if (SonarActive)
 	    {
             //GetComponent<Renderer>().enabled = true;
-	        particles.enableEmission = true;
-            particles.Play();
-            GetComponent<Collider>().enabled = true;
+	        if (!particles.isEmitting)
+	        {
+	            particles.enableEmission = true;
+	            particles.Play();
+	        }
+	        GetComponent<Collider>().enabled = true;
 	    }
 	    else
 	    {
-            particles.enableEmission = false;
+           // particles.enableEmission = false;
             GetComponent<Collider>().enabled = false;
 
 	    }
