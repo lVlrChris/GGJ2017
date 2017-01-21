@@ -54,7 +54,7 @@ public class Fish : MonoBehaviour
         {
 
 
-            if (gameObject.transform.position.x < 3.5 && gameObject.transform.position.z < 2.6)
+            if (gameObject.transform.position.x < 3.5 && gameObject.transform.position.z < 2.6 && gameObject.transform.position.x >  -3.50)
             {
                 gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
             }
