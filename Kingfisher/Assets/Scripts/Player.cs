@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int MovementSpeed = 1;
-    public int RotationSpeed = 1000;
+    public int RotationSpeed = 10;
     public int BulletCooldown = 1;
     private bool CanFireBullet = true;
     private float BulletTimestamp;

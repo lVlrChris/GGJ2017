@@ -20,17 +20,20 @@ public class Sonar : MonoBehaviour
 	    if (SonarActive)
 	    {
             GetComponent<Renderer>().enabled = true;
-        }
+	        GetComponent<Collider>().enabled = true;
+	    }
 	    else
 	    {
             GetComponent<Renderer>().enabled = false;
-        }
+	        GetComponent<Collider>().enabled = false;
 
-        if (Input.GetKeyDown(("e")))
+	    }
+
+        if (Input.GetKeyDown(("space")))
         {
             SonarActive = true;
         }
-        if (Input.GetKeyUp("e"))
+        if (Input.GetKeyUp("space"))
         {
             SonarActive = false;
         }
@@ -38,7 +41,7 @@ public class Sonar : MonoBehaviour
         if (!SonarActive && fish != null)
         {
             float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
-            //Debug.Log(distance);
+          //Debug.Log(distance);
             if (distance <= 4)
             {
                 fish.gameObject.transform.LookAt(gameObject.transform);
@@ -56,6 +59,7 @@ public class Sonar : MonoBehaviour
         if (other.CompareTag("Fish") && SonarActive)
         {
             other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, 1 * Time.deltaTime);
+            other.gameObject.transform.rotation = transform.rotation;
         }
 
 
