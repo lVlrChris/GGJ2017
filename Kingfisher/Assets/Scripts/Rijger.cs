@@ -19,7 +19,7 @@ public class Rijger : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
         //if (Input.GetKey(("z")) && !Attacking)
-        if (XCI.GetButton(XboxButton.Back) && !Attacking)
+        if ((XCI.GetButton(XboxButton.Back)|| Input.GetKey(("z"))) && !Attacking)
         {
             fish = GameObject.FindGameObjectWithTag("Fish");
             if (fish != null)
