@@ -109,6 +109,7 @@ public class Rijger : MonoBehaviour
             Attacking = false;
             if (ListOfFish.Count <= 0)
             {
+                Debug.Log("GAME OVER");
                 Application.Quit();
             }
 
