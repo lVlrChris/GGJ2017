@@ -8,6 +8,7 @@ public class Rijger : MonoBehaviour
     public int Speed = 1;
     public GameObject Schaduw;
     public bool Attacking = false;
+    public bool Retreating = false;
 	// Use this for initialization
 	void Start () {
 		Schaduw = GameObject.FindGameObjectWithTag("Shadow");
@@ -26,12 +27,22 @@ public class Rijger : MonoBehaviour
 	    {
 	        Attack();
 	    }
+	    if (Retreating)
+	    {
+	        Retreat();
+	    }
     }
 
     void Attack()
     {
+        Schaduw.transform.position = Vector3.MoveTowards(Schaduw.transform.position, fish.gameObject.transform.position, Speed * Time.deltaTime / 5);
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Schaduw.gameObject.transform.position, Speed * Time.deltaTime /5 );
         Schaduw.transform.localScale += new Vector3(0.005f, 0f, 0.005f);
+    }
+
+    void Retreat()
+    {
+        Schaduw.transform.localScale -= new Vector3(0.005f, 0f, 0.005f);
     }
 
     void OnTriggerStay(Collider other)
