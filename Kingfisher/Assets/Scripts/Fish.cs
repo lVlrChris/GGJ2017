@@ -24,7 +24,7 @@ public class Fish : MonoBehaviour
 
     public Vector3 lilyPosition;
 
-    private int speed = 1;
+    public int speed = 1;
 
     // Use this for initialization
     void Start ()
@@ -50,7 +50,7 @@ public class Fish : MonoBehaviour
 
     void CheckIfScared()
     {
-        if (IsScared)
+        if (IsScared && !ignorePlayer)
         {
 
 
@@ -72,7 +72,7 @@ public class Fish : MonoBehaviour
 
     void CheckIfFollowing()
     {
-        if (Following || !ignorePlayer)
+        if (Following && !ignorePlayer)
         {
             Debug.Log(("VOLGEN"));
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -150,7 +150,7 @@ public class Fish : MonoBehaviour
         {
             Debug.Log("PLS DOE HET NOUUU");
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            // Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+            Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
             speed = 0;
             transform.Translate(lilyPosition);
         }

@@ -24,6 +24,8 @@ public class Lilypad : MonoBehaviour
             // other.GetComponent<Fish>().lilyPosition = transform.position;
             other.GetComponent<Fish>().AtLily = true;
             other.GetComponent<Fish>().ignorePlayer = true;
+
+            other.GetComponent<Fish>().speed = 0;
             Debug.Log("LILYPAAAD");
             bird.Attacking = false;
             bird.Retreating = true;
