@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,11 +46,11 @@ public class Sonar : MonoBehaviour
             if (distance <= 3)
             {
                 fish.IsScared = true;
+                fish.LastScared = DateTime.Now;
                 fish.gameObject.transform.LookAt(gameObject.transform);
                 fish.gameObject.transform.Rotate(0, 180, 0);
                 fish.gameObject.transform.Translate(Vector3.forward  * Time.deltaTime);
             }
-            fish.IsScared = false;
         }
 
     }
