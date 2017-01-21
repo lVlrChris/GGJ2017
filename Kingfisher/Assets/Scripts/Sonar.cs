@@ -74,8 +74,12 @@ public class Sonar : MonoBehaviour
         {
             other.GetComponent<Fish>().Following = true;
             other.gameObject.transform.LookAt(gameObject.transform);
-            other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, 1 * Time.deltaTime /2);
-            other.gameObject.transform.rotation = transform.rotation;
+            if (!other.GetComponent<Fish>().ignorePlayer)
+            {
+                other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, 1 * Time.deltaTime / 2);
+                other.gameObject.transform.rotation = transform.rotation;
+
+            }
         }
         else if (other.CompareTag("Fish") && !SonarActive)
         {
@@ -83,7 +87,7 @@ public class Sonar : MonoBehaviour
             fish.IsScared = true;
             fish.LastScared = DateTime.Now;
             Debug.Log("HET IS EEN WONDER " + fish.GetComponent<Fish>().IsScared);
-            fish.gameObject.transform.LookAt(new Vector3(0, 0, gameObject.transform.position.x));
+            fish.gameObject.transform.LookAt(gameObject.transform);
             fish.gameObject.transform.Rotate(0, 180, 0);
         }
 
