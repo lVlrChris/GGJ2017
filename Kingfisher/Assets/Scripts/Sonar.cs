@@ -49,7 +49,10 @@ public class Sonar : MonoBehaviour
                 fish.LastScared = DateTime.Now;
                 fish.gameObject.transform.LookAt(gameObject.transform);
                 fish.gameObject.transform.Rotate(0, 180, 0);
-                fish.gameObject.transform.Translate(Vector3.forward  * Time.deltaTime);
+                if (fish.gameObject.transform.position.x < 3.5 && fish.gameObject.transform.position.z < 2.6)
+                {
+                    fish.gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+                }
             }
         }
 
