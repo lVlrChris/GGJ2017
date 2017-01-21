@@ -12,7 +12,7 @@ public class Sonar : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         GetComponent<Renderer>().enabled = false;
-        ParticleSystem particles = GameObject.Find("PS_Sonar").GetComponent<ParticleSystem>();
+        particles = GameObject.Find("PS_Sonar").GetComponent<ParticleSystem>();
 
     }
 
@@ -22,6 +22,7 @@ public class Sonar : MonoBehaviour
 	    if (SonarActive)
 	    {
             //GetComponent<Renderer>().enabled = true;
+	        particles.enableEmission = true;
             particles.Play();
             GetComponent<Collider>().enabled = true;
 	    }
@@ -51,10 +52,10 @@ public class Sonar : MonoBehaviour
                 fish.LastScared = DateTime.Now;
                 fish.gameObject.transform.LookAt(gameObject.transform);
                 fish.gameObject.transform.Rotate(0, 180, 0);
-                if (fish.gameObject.transform.position.x < 3.5 && fish.gameObject.transform.position.z < 2.6)
-                {
+               // if (fish.gameObject.transform.position.x < 3.5 && fish.gameObject.transform.position.z < 2.6)
+                //{
                     fish.gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
-                }
+                //}
             }
         }
 

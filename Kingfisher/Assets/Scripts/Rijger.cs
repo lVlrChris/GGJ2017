@@ -42,7 +42,7 @@ public class Rijger : MonoBehaviour
 
         Schaduw.transform.localScale += new Vector3(0.0015f, 0f, 0.0015f);
         float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
-        if (distance < 7)
+        if (distance < 10)
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Schaduw.gameObject.transform.position, (Speed * 2) * Time.deltaTime);
         }
