@@ -24,7 +24,7 @@ public class Rijger : MonoBehaviour
             fish = GameObject.FindGameObjectWithTag("Fish");
             Schaduw.transform.position = fish.gameObject.transform.position;
             Attacking = true;
-            Debug.Log("ATTACK");
+            Debug.Log("ATTACK?");
         }
 	    if (Attacking)
 	    {
