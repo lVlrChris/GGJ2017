@@ -42,13 +42,14 @@ public class Sonar : MonoBehaviour
         {
             float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
           //Debug.Log(distance);
-            if (distance <= 4)
+            if (distance <= 3)
             {
+                fish.IsScared = true;
                 fish.gameObject.transform.LookAt(gameObject.transform);
                 fish.gameObject.transform.Rotate(0, 180, 0);
-                fish.gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+                fish.gameObject.transform.Translate(Vector3.forward  * Time.deltaTime);
             }
-
+            fish.IsScared = false;
         }
 
     }
