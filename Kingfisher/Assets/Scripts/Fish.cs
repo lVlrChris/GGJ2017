@@ -70,8 +70,8 @@ public class Fish : MonoBehaviour
 	    }
 	    if (AtOrigin)
 	    {
-	        transform.Rotate((new Vector3(0, 2, 0) * 2 * Time.deltaTime));
-	        transform.Translate(Vector3.forward * 1 * Time.deltaTime);
+	       // transform.Rotate((new Vector3(0, 2, 0) * 2 * Time.deltaTime));
+	       // transform.Translate(Vector3.forward * 1 * Time.deltaTime);
 	    }
 	}
 

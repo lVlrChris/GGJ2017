@@ -54,7 +54,7 @@ public class Sonar : MonoBehaviour
         {
             float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
           //Debug.Log(distance);
-            if (distance <= 3)
+            if (distance <= 1.5)
             {
                 fish.IsScared = true;
                 fish.LastScared = DateTime.Now;
