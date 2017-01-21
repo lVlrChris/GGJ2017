@@ -6,14 +6,19 @@ using XboxCtrlrInput;
 public class Rijger : MonoBehaviour
 {
     public GameObject fish;
-    public int Speed = 200;
-    public GameObject Schaduw;
+    public int Speed = 10;
+    public GameObject shadow;
     public bool Attacking = false;
     public bool Retreating = false;
 
+    public GameObject[] ListOfFish;
+    private GameObject currentTarget;
+
+
 	// Use this for initialization
 	void Start () {
-		Schaduw = GameObject.FindGameObjectWithTag("Shadow");
+		shadow = GameObject.FindGameObjectWithTag("Shadow");
+	    currentTarget = PickRandomTarget();
 	}
 	
 	// Update is called once per frame
@@ -21,10 +26,13 @@ public class Rijger : MonoBehaviour
         //if (Input.GetKey(("z")) && !Attacking)
         if ((XCI.GetButton(XboxButton.Back)|| Input.GetKey(("z"))) && !Attacking)
         {
-            fish = GameObject.FindGameObjectWithTag("Fish");
-            if (fish != null)
+
+            Debug.Log("DE VIS IS NU " + currentTarget.name);
+
+            //fish = GameObject.FindGameObjectWithTag("Fish");
+            if (currentTarget != null)
             {
-                Schaduw.transform.position = fish.gameObject.transform.position;
+                //shadow.transform.position = currentTarget.gameObject.transform.position;
                 Attacking = true;
                 Debug.Log("ATTACK?");
             }
@@ -41,26 +49,26 @@ public class Rijger : MonoBehaviour
 
     void Attack()
     {
-        Schaduw.transform.position = Vector3.MoveTowards(Schaduw.transform.position, fish.gameObject.transform.position, Speed * Time.deltaTime);
+        shadow.transform.position = Vector3.MoveTowards(shadow.transform.position, currentTarget.gameObject.transform.position, Speed * Time.deltaTime);
         // 
-        gameObject.transform.Translate(Vector3.right * Time.deltaTime * Speed);
+       // gameObject.transform.Translate(Vector3.right * Time.deltaTime * Speed);
 
-        Schaduw.transform.localScale += new Vector3(0.0015f, 0f, 0.0015f);
-        float distance = Vector3.Distance(gameObject.transform.position, fish.gameObject.transform.position);
-        if (distance < 10)
+        shadow.transform.localScale += new Vector3(0.0015f, 0f, 0.0015f);
+        float distance = Vector3.Distance(shadow.gameObject.transform.position, currentTarget.gameObject.transform.position);
+        if (distance < 1)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Schaduw.gameObject.transform.position, (Speed * 2) * Time.deltaTime);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, shadow.gameObject.transform.position, (Speed * 5) * Time.deltaTime);
         }
 
     }
 
     void Retreat()
     {
-        if (Schaduw.transform.localScale.x > 0)
+        if (shadow.transform.localScale.x > 0)
         {
-            Schaduw.transform.localScale -= new Vector3(0.02f, 0f, 0.02f);
+            shadow.transform.localScale -= new Vector3(0.02f, 0f, 0.02f);
         }
-        gameObject.transform.Translate(new Vector3(1,1,0) * Speed * Time.deltaTime);
+        gameObject.transform.Translate(new Vector3(1,1,0) * (Speed * 2) * Time.deltaTime);
 
     }
 
@@ -82,4 +90,12 @@ public class Rijger : MonoBehaviour
 
 
     }
+
+    GameObject PickRandomTarget()
+    {
+        var randomIndex = Random.Range(0, ListOfFish.Length);
+        currentTarget = ListOfFish[randomIndex];
+        return currentTarget;
+    }
+
 }

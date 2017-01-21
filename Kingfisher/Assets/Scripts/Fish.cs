@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XboxCtrlrInput;
 
 public class Fish : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Fish : MonoBehaviour
     public bool AtOrigin = false;
     public float ScaredCooldown = 10.0f;
     public DateTime LastScared;
+    public bool Following = false;
 
     public float Stamina = 100;
 
@@ -29,7 +31,8 @@ public class Fish : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
         //Debug.Log(distance);
         /* if (distance <= 4)
          {
@@ -38,6 +41,13 @@ public class Fish : MonoBehaviour
              gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
          }
          */
+
+        if (XCI.GetButtonUp(XboxButton.RightBumper) || Input.GetKeyUp(("space")))
+        {
+            Following = false;
+        }
+
+
 
         //als vis niet bang is ga na 10 sec terug naar beginpunt
         DateTime currentDate = DateTime.Now;
@@ -50,28 +60,48 @@ public class Fish : MonoBehaviour
 
         }
 
+
+
+
         if (Stamina > 100) Stamina = 100;
 
 	    if (IsScared)
 	    {
-	        Stamina -= 0.01f;
+
+
+            if (gameObject.transform.position.x < 3.5 && gameObject.transform.position.z < 2.6)
+            {
+                gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+            }
+            Stamina -= 0.01f;
             GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
             ScaredCooldown = 10;
 	        AtOrigin = false;
 	    }
-	    if (!IsScared )
+	    if (Following)
 	    {
+            Debug.Log(("VOLGEN"));
+	        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            transform.transform.LookAt(player.transform);
 
-            transform.position = Vector3.MoveTowards(transform.position, OriginPoint, 1 * Time.deltaTime);
+            var distance = Vector3.Distance(transform.position, player.GetComponent<Renderer>().bounds.center);
+            Debug.Log("DE AFSTAND IS " + distance);
+	        if (distance > 10)
+	        {
+	            Debug.Log("het ken");
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
+	                1 * Time.deltaTime / 10);
+	        }
 	    }
-	    if (gameObject.transform.position == OriginPoint)
-	    {
-	        AtOrigin = true;
-	    }
+
+	   // if (gameObject.transform.position == OriginPoint)
+	   // {
+	     //   AtOrigin = true;
+	   // }
 	    if (AtOrigin)
 	    {
-	        transform.Rotate((new Vector3(0, 2, 0) * 2 * Time.deltaTime));
-	        transform.Translate(Vector3.forward * 1 * Time.deltaTime);
+	       // transform.Rotate((new Vector3(0, 2, 0) * 2 * Time.deltaTime));
+	       // transform.Translate(Vector3.forward * 1 * Time.deltaTime);
 	    }
 	}
 
