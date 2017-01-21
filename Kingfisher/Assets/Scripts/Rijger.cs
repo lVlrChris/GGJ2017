@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class Rijger : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class Rijger : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(("z")) && !Attacking)
+        //if (Input.GetKey(("z")) && !Attacking)
+        if (XCI.GetButton(XboxButton.Back) && !Attacking)
         {
             fish = GameObject.FindGameObjectWithTag("Fish");
             Schaduw.transform.position = fish.gameObject.transform.position;

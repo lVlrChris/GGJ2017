@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class Sonar : MonoBehaviour
 {
@@ -38,11 +39,13 @@ public class Sonar : MonoBehaviour
 
 	    }
 
-        if (Input.GetKeyDown(("space")))
+
+        //if (Input.GetKeyDown(("space")))
+        if(XCI.GetButtonDown(XboxButton.RightBumper))
         {
             SonarActive = true;
         }
-        if (Input.GetKeyUp("space"))
+        if (XCI.GetButtonUp(XboxButton.RightBumper))
         {
             SonarActive = false;
         }
