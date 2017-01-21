@@ -1,18 +1,27 @@
 fileFormatVersion: 2
-guid: f804f9aeb59b8a44794e8d62b353b437
-timeCreated: 1484997863
+guid: 384c728c1c2cfef4582e87752bf34f0a
+timeCreated: 1485038527
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: default
-    100002: //RootNode
-    400000: default
-    400002: //RootNode
-    2300000: default
-    3300000: default
-    4300000: default
+    100000: joint1
+    100002: joint2
+    100004: joint3
+    100006: joint4
+    100008: //RootNode
+    100010: Koi_Fish_mdl
+    400000: joint1
+    400002: joint2
+    400004: joint3
+    400006: joint4
+    400008: //RootNode
+    400010: Koi_Fish_mdl
+    4300000: Koi_Fish_mdl
+    7400000: Swimming Fish
+    9500000: //RootNode
     11100000: //RootNode
+    13700000: Koi_Fish_mdl
   materials:
     importMaterials: 1
     materialName: 0
@@ -33,11 +42,51 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Swimming Fish
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 45
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint3/joint4
+        weight: 1
+      - path: Koi_Fish_mdl
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -72,7 +121,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 1
