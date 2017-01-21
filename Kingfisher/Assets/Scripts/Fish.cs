@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Fish : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Fish : MonoBehaviour
     public bool AtOrigin = false;
     public float ScaredCooldown = 10.0f;
     public DateTime LastScared;
+
+    public float Stamina = 100;
+
 
     // Use this for initialization
     void Start ()
@@ -49,7 +53,9 @@ public class Fish : MonoBehaviour
 
 	    if (IsScared)
 	    {
-	        ScaredCooldown = 10;
+	        Stamina -= 0.01f;
+            GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
+            ScaredCooldown = 10;
 	        AtOrigin = false;
 	    }
 	    if (!IsScared )
