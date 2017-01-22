@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using XboxCtrlrInput;
 
 public class Rijger : MonoBehaviour
 {
@@ -55,7 +54,7 @@ public class Rijger : MonoBehaviour
 
 
         //if (Input.GetKey(("z")) && !Attacking)
-        if ((XCI.GetButton(XboxButton.Back)|| Input.GetKey(("z"))) && !Attacking)
+        if ((Input.GetKey(("z"))) && !Attacking)
         {
 
             

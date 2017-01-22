@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XboxCtrlrInput;
 
 public class Player : MonoBehaviour
 {
@@ -38,18 +37,18 @@ public class Player : MonoBehaviour
 
 
         //if (Input.GetKey("w"))
-        if(XCI.GetButton(XboxButton.DPadUp) || Input.GetKey("w"))
+        if(Input.GetKey("w"))
         {
 	     //   Submarine.transform.position = Vector3.Lerp(StartPosition.position, StartPosition.position, JourneyFraction);
 	        Submarine.transform.Translate(Vector3.forward * MovementSpeed * Time.deltaTime);
             gameObject.transform.GetChild(0).transform.GetChild(3).gameObject.transform.Rotate(Vector3.right * 30 * Time.deltaTime);
 	    }
-        if (XCI.GetButton(XboxButton.DPadLeft) || Input.GetKey("a"))
+        if (Input.GetKey("a"))
 
         {
             Submarine.transform.Rotate(new Vector3(0, -RotationSpeed, 0) * RotationSpeed *Time.deltaTime);
 	    }
-        if (XCI.GetButton(XboxButton.DPadRight) || Input.GetKey("d"))
+        if (Input.GetKey("d"))
 
         {
             Submarine.transform.Rotate(new Vector3(0, RotationSpeed, 0)  * RotationSpeed * Time.deltaTime);
@@ -58,7 +57,7 @@ public class Player : MonoBehaviour
 
         //food
         //if (Input.GetKeyDown(("q")) && CanFireBullet)
-        if ((XCI.GetButtonDown(XboxButton.LeftBumper) || Input.GetKeyDown(("q")  ) && CanFireBullet))
+        if ( Input.GetKeyDown(("q")  ) && CanFireBullet)
         {
             CanFireBullet = false;
             BulletTimestamp = Time.time + BulletCooldown;

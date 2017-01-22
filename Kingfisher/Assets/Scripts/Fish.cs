@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using XboxCtrlrInput;
 
 public class Fish : MonoBehaviour
 {
@@ -49,7 +47,7 @@ public class Fish : MonoBehaviour
 
     void CheckSonar()
     {
-        if (XCI.GetButtonUp(XboxButton.RightBumper) || Input.GetKeyUp(("space")))
+        if (Input.GetKeyUp(("space")))
         {
             Following = false;
         }
