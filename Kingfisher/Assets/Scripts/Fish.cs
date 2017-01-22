@@ -60,7 +60,7 @@ public class Fish : MonoBehaviour
                 gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
             }
             Stamina -= 0.01f;
-            GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
+         //   GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
             ScaredCooldown = 10;
             AtOrigin = false;
         }

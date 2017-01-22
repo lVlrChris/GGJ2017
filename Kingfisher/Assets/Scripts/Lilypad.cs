@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Lilypad : MonoBehaviour
 {
@@ -30,6 +31,14 @@ public class Lilypad : MonoBehaviour
                 other.GetComponent<Fish>().speed = 0;
                 bird.Attacking = false;
                 bird.Retreating = true;
+
+                Debug.Log(("IS DIT HET NOU/"));
+                var scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+                scoreManager.score += 10;
+                GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Score " + scoreManager.score;
+
+
+
             }
 
             Debug.Log("LILYPAAAD");

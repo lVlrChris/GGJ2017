@@ -116,7 +116,7 @@ public class Rijger : MonoBehaviour
         }
         if (other.CompareTag("Bird"))
         {
-            GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>().score += 10;
+
             Attacking = false;
         }
 
