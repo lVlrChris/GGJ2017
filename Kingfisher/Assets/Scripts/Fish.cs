@@ -107,7 +107,7 @@ public class Fish : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        transform.Rotate(0, transform.rotation.y, 0); //bijna goed
+        //transform.Rotate(0, transform.rotation.y, 0); //bijna goed
         
         
         //transform.rotation = Quaternion.identity;
