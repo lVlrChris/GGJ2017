@@ -8,8 +8,10 @@ public class Turtle : MonoBehaviour
     public int animationPlayTime = 4;
     private int animationCount = 0;
 	// Use this for initialization
-	void Start () {
-		
+    private Animation animation;
+	void Start ()
+	{
+	    animation = GetComponent<Animation>();
 	}
 
     public void PlayAnimation()
@@ -21,9 +23,10 @@ public class Turtle : MonoBehaviour
     void Update () {
 	    if (animationPlaying)
 	    {
-	        if (animationCount < animationPlayTime)
+	        if (animationCount < animationPlayTime && !animation.isPlaying)
 	        {
-	            GetComponent<Animation>().Play();
+	            animation.Play();
+	            
                 animationCount++;
 	        }
 	    }
