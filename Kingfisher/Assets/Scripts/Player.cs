@@ -57,13 +57,13 @@ public class Player : MonoBehaviour
 
         //food
         //if (Input.GetKeyDown(("q")) && CanFireBullet)
-        if ( Input.GetKeyDown(("q")  ) && CanFireBullet)
+       /* if ( Input.GetKeyDown(("q")  ) && CanFireBullet)
         {
             CanFireBullet = false;
             BulletTimestamp = Time.time + BulletCooldown;
 	        
             Instantiate(Bullet, Submarine.transform.position, transform.rotation);
-        }
+        }*/
 
         //sonar
 
