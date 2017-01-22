@@ -8,7 +8,7 @@ public class Turtle : MonoBehaviour
     private int animationPlayTime = 4;
     private int animationCount = 0;
     public ParticleSystem[] particles;
-    private int tearsPlayTime = 4;
+    private int tearsPlayTime = 2;
     private int tearsCount = 0;
     public AudioClip ConfettiSound, CheerSound, CrySound;
     AudioSource audioSource;
@@ -33,7 +33,7 @@ public class Turtle : MonoBehaviour
     {
 
         crying = true;
-        audioSource.PlayOneShot(CrySound, 0.7f);
+        audioSource.PlayOneShot(CrySound, 1.0f);
     }
 
     // Update is called once per frame

@@ -16,11 +16,14 @@ public class Rijger : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 shadowStartPosition;
     private Vector3 shadowSize;
-
+    private bool audioPlayed = false;
     private float startTime;
 
     public float timeTillAttack = 10.0f;
     private GameObject[] turtles;
+
+    public AudioClip EagleSound;
+    AudioSource audioSource;
 
     // Use this for initialization
     void Start () {
@@ -34,10 +37,12 @@ public class Rijger : MonoBehaviour
 
 	    startTime = Time.time;
         turtles = GameObject.FindGameObjectsWithTag("Turtle");
+
+        audioSource = GetComponent<AudioSource>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         if (Time.time - timeTillAttack >= startTime && !Attacking && !Retreating)
         {
             //fish = GameObject.FindGameObjectWithTag("Fish");
@@ -110,6 +115,11 @@ public class Rijger : MonoBehaviour
         float distance = Vector3.Distance(shadow.gameObject.transform.position, currentTarget.gameObject.transform.position);
         if (distance < 1)
         {
+            if (audioPlayed == false)
+            {
+                audioSource.PlayOneShot(EagleSound, 0.7f);
+                audioPlayed = true;
+            }
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, shadow.gameObject.transform.position, (Speed * 5) * Time.deltaTime);
         }
 
@@ -117,7 +127,7 @@ public class Rijger : MonoBehaviour
 
     void Retreat()
     {
-
+        audioPlayed = false;
         //shadow.transform.localScale -= new Vector3(0.02f, 0f, 0.02f);
         shadow.transform.Translate(Vector3.right * (Speed * 2) * Time.deltaTime);
         gameObject.transform.Translate(new Vector3(1,1,0) * (Speed * 2) * Time.deltaTime);

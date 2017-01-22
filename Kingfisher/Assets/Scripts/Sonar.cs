@@ -4,8 +4,6 @@ using UnityEngine.Audio;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-
 public class Sonar : MonoBehaviour
 {
     public bool SonarActive = false;
