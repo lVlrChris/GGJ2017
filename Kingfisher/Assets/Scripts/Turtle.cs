@@ -25,7 +25,7 @@ public class Turtle : MonoBehaviour
     public void PlayAnimation()
     {
         audioSource.PlayOneShot(ConfettiSound, 0.7f);
-        audioSource.PlayOneShot(CheerSound, 0.7f);
+        audioSource.PlayOneShot(CheerSound, 0.9f);
         animationPlaying = true;
     }
 
