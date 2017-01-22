@@ -18,6 +18,10 @@ public class Rijger : MonoBehaviour
     private Vector3 shadowStartPosition;
     private Vector3 shadowSize;
 
+    private float startTime;
+
+    public float timeTillAttack = 10.0f;
+
 	// Use this for initialization
 	void Start () {
 		shadow = GameObject.FindGameObjectWithTag("Shadow");
@@ -27,10 +31,29 @@ public class Rijger : MonoBehaviour
 
 	    shadowStartPosition = shadow.transform.position;
 	    shadowSize = shadow.transform.localScale;
+
+	    startTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.time - timeTillAttack >= startTime && !Attacking && !Retreating)
+        {
+            //fish = GameObject.FindGameObjectWithTag("Fish");
+            if (currentTarget != null)
+            {
+                //shadow.transform.position = currentTarget.gameObject.transform.position;
+                Attacking = true;
+                Debug.Log("ATTACKKING " + currentTarget);
+            }
+            else
+            {
+                currentTarget = PickRandomTarget();
+            }
+
+        }
+
+
         //if (Input.GetKey(("z")) && !Attacking)
         if ((XCI.GetButton(XboxButton.Back)|| Input.GetKey(("z"))) && !Attacking)
         {
@@ -65,6 +88,10 @@ public class Rijger : MonoBehaviour
 	        shadow.transform.position = (shadowStartPosition);
 	        shadow.transform.localScale = shadowSize;
 	    }
+
+
+
+
     }
 
     void Attack()
@@ -88,7 +115,8 @@ public class Rijger : MonoBehaviour
         //shadow.transform.localScale -= new Vector3(0.02f, 0f, 0.02f);
         shadow.transform.Translate(Vector3.right * (Speed * 2) * Time.deltaTime);
         gameObject.transform.Translate(new Vector3(1,1,0) * (Speed * 2) * Time.deltaTime);
-
+        startTime = Time.time;
+        timeTillAttack = Random.Range(5, 15);
     }
 
     
@@ -110,7 +138,7 @@ public class Rijger : MonoBehaviour
             if (ListOfFish.Count <= 0)
             {
                 Debug.Log("GAME OVER");
-                Application.Quit();
+                Application.LoadLevel("Main Menu");
             }
 
         }
