@@ -20,9 +20,10 @@ public class Rijger : MonoBehaviour
     private float startTime;
 
     public float timeTillAttack = 10.0f;
+    private GameObject[] turtles;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		shadow = GameObject.FindGameObjectWithTag("Shadow");
 	    currentTarget = PickRandomTarget();
 	    startPosition = transform.position;
@@ -32,7 +33,8 @@ public class Rijger : MonoBehaviour
 	    shadowSize = shadow.transform.localScale;
 
 	    startTime = Time.time;
-	}
+        turtles = GameObject.FindGameObjectsWithTag("Turtle");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -81,6 +83,11 @@ public class Rijger : MonoBehaviour
 
 	    if (transform.position.x >= 7)
 	    {
+            if (ListOfFish.Count <= 0)
+            {
+                Debug.Log("GAME OVER");
+                Application.LoadLevel("Main Menu");
+            }
             Debug.Log("JAJAJAJAJAJAJAJA");
             transform.position = (startPosition);
 	        Retreating = false;
@@ -132,13 +139,15 @@ public class Rijger : MonoBehaviour
             }
             Debug.Log("SIZE VAN LIST " + ListOfFish);
             Destroy(other.gameObject);
+
             Retreating = true;
             Attacking = false;
-            if (ListOfFish.Count <= 0)
+
+            foreach (var turtle in turtles)
             {
-                Debug.Log("GAME OVER");
-                Application.LoadLevel("Main Menu");
+                turtle.GetComponent<Turtle>().Cry();
             }
+
 
         }
         if (other.CompareTag("Bird"))

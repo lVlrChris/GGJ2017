@@ -7,6 +7,10 @@ public class Turtle : MonoBehaviour
     private bool animationPlaying;
     public int animationPlayTime = 4;
     private int animationCount = 0;
+    public ParticleSystem particles;
+
+
+    private bool crying; 
 	// Use this for initialization
     private Animation animation;
 	void Start ()
@@ -17,6 +21,11 @@ public class Turtle : MonoBehaviour
     public void PlayAnimation()
     {
         animationPlaying = true;
+    }
+
+    public void Cry()
+    {
+        crying = true;
     }
 
     // Update is called once per frame
@@ -30,6 +39,14 @@ public class Turtle : MonoBehaviour
                 animationCount++;
 	        }
 	    }
-		
-	}
+
+        if (crying)
+        {
+            if (!particles.isEmitting)
+            {
+                particles.enableEmission = true;
+                particles.Play();
+            }
+        }
+    }
 }
