@@ -33,6 +33,7 @@ public class Turtle : MonoBehaviour
     {
 
         crying = true;
+        audioSource.PlayOneShot(CrySound, 0.7f);
     }
 
     // Update is called once per frame
