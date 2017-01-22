@@ -62,7 +62,11 @@ public class Fish : MonoBehaviour
 
             if (gameObject.transform.position.x < 3.5 && gameObject.transform.position.z < 2.6 && gameObject.transform.position.x >  -3.50 && gameObject.transform.position.z > -2.01)
             {
-                gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+                var forward = Vector3.forward;
+                //forward.y = 0.82f;
+                gameObject.transform.Translate(forward * Time.deltaTime);
+                gameObject.transform.position =
+                    (new Vector3(gameObject.transform.position.x, 0.82f, gameObject.transform.position.z));
             }
             Stamina -= 0.01f;
          //   GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
@@ -85,19 +89,29 @@ public class Fish : MonoBehaviour
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             transform.transform.LookAt(player.transform);
 
-            var distance = Vector3.Distance(transform.position, player.GetComponent<Renderer>().bounds.center);
-            if (distance > 10)
-            {
-                Debug.Log("het ken");
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
-                    speed * Time.deltaTime / 10);
-            }
+            gameObject.transform.position =
+    (new Vector3(gameObject.transform.position.x, 0.82f, gameObject.transform.position.z));
+
+            //var distance = Vector3.Distance(transform.position, player.GetComponent<Renderer>().bounds.center);
+
+            /* if (distance > 10)
+             {
+                 Debug.Log("het ken");
+                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
+                     speed * Time.deltaTime / 10);
+
+             }*/
         }
     }
 
 	// Update is called once per frame
 	void Update ()
 	{
+        transform.Rotate(0, transform.rotation.y, 0); //bijna goed
+        
+        
+        //transform.rotation = Quaternion.identity;
+
         //Debug.Log(distance);
         /* if (distance <= 4)
          {
@@ -130,7 +144,6 @@ public class Fish : MonoBehaviour
         TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
 	    if (elapsedSpan.TotalSeconds >= ScaredCooldown)
 	    {
-            Debug.Log("ZOVEEL ELAPSED" + elapsedSpan.TotalSeconds);
 	        IsScared = false;
           //  gameObject.transform.LookAt(OriginPoint);
         //    transform.position = Vector3.MoveTowards(transform.position, OriginPoint, speed * Time.deltaTime);
