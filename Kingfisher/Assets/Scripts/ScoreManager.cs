@@ -20,6 +20,6 @@ public class ScoreManager : MonoBehaviour
 	void Update ()
 	{
 	    playTime = Time.time - startTime;
-        GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>().text = "" + playTime;
+        //GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>().text = "" + playTime;
     }
 }

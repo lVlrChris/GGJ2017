@@ -35,9 +35,9 @@ public class Lilypad : MonoBehaviour
                 bird.Retreating = true;
 
                 Debug.Log(("IS DIT HET NOU/"));
-                var scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-                scoreManager.score += 10;
-                GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Score " + scoreManager.score;
+               // var scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+               // scoreManager.score += 10;
+               // GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Score " + scoreManager.score;
 
 
                 foreach (var turtle in turtles)
