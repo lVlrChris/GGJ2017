@@ -5,9 +5,11 @@ using UnityEngine;
 public class Turtle : MonoBehaviour
 {
     private bool animationPlaying;
-    public int animationPlayTime = 4;
+    private int animationPlayTime = 4;
     private int animationCount = 0;
     public ParticleSystem[] particles;
+    private int tearsPlayTime = 4;
+    private int tearsCount = 0;
 
 
     private bool crying; 
@@ -44,10 +46,16 @@ public class Turtle : MonoBehaviour
         {
             foreach (var particle in particles)
             {
-                if (!particle.isEmitting)
+                if (!particle.isEmitting && tearsCount < tearsPlayTime)
                 {
                     particle.enableEmission = true;
                     particle.Play();
+                    tearsCount++;
+                }
+                else if(tearsCount >= tearsPlayTime )
+                {
+                    Debug.Log("STOP MET HUILEN PLS");
+                    crying = false;
                 }
 
             }
