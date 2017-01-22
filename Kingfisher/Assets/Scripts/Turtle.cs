@@ -7,7 +7,7 @@ public class Turtle : MonoBehaviour
     private bool animationPlaying;
     public int animationPlayTime = 4;
     private int animationCount = 0;
-    public ParticleSystem particles;
+    public ParticleSystem[] particles;
 
 
     private bool crying; 
@@ -42,11 +42,16 @@ public class Turtle : MonoBehaviour
 
         if (crying)
         {
-            if (!particles.isEmitting)
+            foreach (var particle in particles)
             {
-                particles.enableEmission = true;
-                particles.Play();
+                if (!particle.isEmitting)
+                {
+                    particle.enableEmission = true;
+                    particle.Play();
+                }
+
             }
+
         }
     }
 }
