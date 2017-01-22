@@ -68,5 +68,10 @@ public class Player : MonoBehaviour
 
         //sonar
 
+        if (Input.GetKeyDown(("r")))
+	    {
+            Application.LoadLevel("Main Menu");
+        }
+
     }
 }

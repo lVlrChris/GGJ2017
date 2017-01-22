@@ -27,6 +27,12 @@ public class Fish : MonoBehaviour
     public int speed = 1;
 
 
+    public bool isIdling = true;
+
+    private Vector3 v;
+
+
+
     // Use this for initialization
     void Start ()
 	{
@@ -37,6 +43,7 @@ public class Fish : MonoBehaviour
             OriginPoint = transform.position;
 
         }
+        v = transform.position - new Vector3(transform.position.x + 0.5f, transform.position.y , transform.position.z +0.5f);
 
     }
 
@@ -60,7 +67,7 @@ public class Fish : MonoBehaviour
                 gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
             }
             Stamina -= 0.01f;
-            GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
+         //   GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Stamina " + Stamina;
             ScaredCooldown = 10;
             AtOrigin = false;
         }
@@ -127,6 +134,8 @@ public class Fish : MonoBehaviour
 	    {
 	        IsScared = false;
             gameObject.transform.LookAt(OriginPoint);
+            transform.position = Vector3.MoveTowards(transform.position, OriginPoint,
+                    speed * Time.deltaTime);
 
         }
 
@@ -139,9 +148,11 @@ public class Fish : MonoBehaviour
 
         CheckIfFollowing();
 
-        // if (gameObject.transform.position == OriginPoint)
-        // {
-        //   AtOrigin = true;
+	    if (gameObject.transform.position == OriginPoint)
+	    {
+	        isIdling = true;
+	    }
+	    //   AtOrigin = true;
         // }
         //	    if (AtOrigin)
         //  {
@@ -170,6 +181,13 @@ public class Fish : MonoBehaviour
 
     void Idle()
     {
+        if (isIdling)
+        {
+            Debug.Log("idle nou");
+            v = Quaternion.AngleAxis(20 * Time.deltaTime, Vector3.up) * v;
+            transform.Rotate(Vector3.up * Time.deltaTime * 20);
+            transform.position = OriginPoint + v;
+        }
        
     }
 }
