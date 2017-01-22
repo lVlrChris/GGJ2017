@@ -10,7 +10,8 @@ public class Turtle : MonoBehaviour
     public ParticleSystem[] particles;
     private int tearsPlayTime = 4;
     private int tearsCount = 0;
-
+    public AudioClip ConfettiSound, CheerSound, CrySound;
+    AudioSource audioSource;
 
     private bool crying; 
 	// Use this for initialization
@@ -18,15 +19,19 @@ public class Turtle : MonoBehaviour
 	void Start ()
 	{
 	    animation = GetComponent<Animation>();
-	}
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void PlayAnimation()
     {
+        audioSource.PlayOneShot(ConfettiSound, 0.7f);
+        audioSource.PlayOneShot(CheerSound, 0.7f);
         animationPlaying = true;
     }
 
     public void Cry()
     {
+
         crying = true;
     }
 
