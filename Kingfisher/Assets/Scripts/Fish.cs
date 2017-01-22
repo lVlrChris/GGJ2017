@@ -26,6 +26,7 @@ public class Fish : MonoBehaviour
 
     public int speed = 1;
 
+
     // Use this for initialization
     void Start ()
 	{
@@ -74,6 +75,7 @@ public class Fish : MonoBehaviour
     {
         if (Following && !ignorePlayer)
         {
+            IsScared = false;
             Debug.Log(("VOLGEN"));
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             transform.transform.LookAt(player.transform);
@@ -129,7 +131,7 @@ public class Fish : MonoBehaviour
         }
 
 
-
+	    Idle();
 
         if (Stamina > 100) Stamina = 100;
 
@@ -150,7 +152,7 @@ public class Fish : MonoBehaviour
         {
             Debug.Log("PLS DOE HET NOUUU");
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+           // Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
             speed = 0;
             transform.Translate(lilyPosition);
         }
@@ -164,5 +166,10 @@ public class Fish : MonoBehaviour
             Debug.Log("HALLO");
         }
 
+    }
+
+    void Idle()
+    {
+       
     }
 }

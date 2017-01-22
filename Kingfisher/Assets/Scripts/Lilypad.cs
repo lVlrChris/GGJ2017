@@ -22,13 +22,18 @@ public class Lilypad : MonoBehaviour
         if (other.CompareTag("Fish"))
         {
             // other.GetComponent<Fish>().lilyPosition = transform.position;
-            other.GetComponent<Fish>().AtLily = true;
-            other.GetComponent<Fish>().ignorePlayer = true;
+            if (bird.Attacking)
+            {
+                other.GetComponent<Fish>().AtLily = true;
+                other.GetComponent<Fish>().ignorePlayer = true;
 
-            other.GetComponent<Fish>().speed = 0;
+                other.GetComponent<Fish>().speed = 0;
+                bird.Attacking = false;
+                bird.Retreating = true;
+            }
+
             Debug.Log("LILYPAAAD");
-            bird.Attacking = false;
-            bird.Retreating = true;
+
         }
 
 
