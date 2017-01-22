@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections;
+using UnityEngine.Audio;
 using System.Collections.Generic;
 using UnityEngine;
+
+[RequireComponent(typeof(AudioSource))]
 
 public class Sonar : MonoBehaviour
 {
     public bool SonarActive = false;
     public ParticleSystem particles;
-	// Use this for initialization
-	void Start () {
+    public AudioClip PlayerSonar;
+    AudioSource SonarSound;
+
+    // Use this for initialization
+    void Start () {
         GetComponent<Renderer>().enabled = false;
+
+         SonarSound = GetComponent<AudioSource>();
 
 	}
 
@@ -41,6 +49,8 @@ public class Sonar : MonoBehaviour
         if(Input.GetKeyDown(("space")))
         {
             SonarActive = true;
+            //audio.PlayOneShot(PlayerSonar, 0.7F);
+            SonarSound.PlayOneShot(PlayerSonar, 0.7f);
         }
         if (Input.GetKeyUp(("space")))
         {
