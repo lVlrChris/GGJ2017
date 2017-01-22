@@ -27,9 +27,11 @@ public class Fish : MonoBehaviour
     public int speed = 1;
 
 
-    private bool isIdling = true;
+    public bool isIdling = true;
 
     private Vector3 v;
+
+
 
     // Use this for initialization
     void Start ()
@@ -131,7 +133,9 @@ public class Fish : MonoBehaviour
 	    if (elapsedSpan.TotalSeconds >= ScaredCooldown)
 	    {
 	        IsScared = false;
-           // gameObject.transform.LookAt(OriginPoint);
+            gameObject.transform.LookAt(OriginPoint);
+            transform.position = Vector3.MoveTowards(transform.position, OriginPoint,
+                    speed * Time.deltaTime);
 
         }
 
@@ -144,9 +148,11 @@ public class Fish : MonoBehaviour
 
         CheckIfFollowing();
 
-        // if (gameObject.transform.position == OriginPoint)
-        // {
-        //   AtOrigin = true;
+	    if (gameObject.transform.position == OriginPoint)
+	    {
+	        isIdling = true;
+	    }
+	    //   AtOrigin = true;
         // }
         //	    if (AtOrigin)
         //  {
@@ -179,7 +185,7 @@ public class Fish : MonoBehaviour
         {
             Debug.Log("idle nou");
             v = Quaternion.AngleAxis(20 * Time.deltaTime, Vector3.up) * v;
-            transform.Rotate(Vector3.up * Time.deltaTime * 15);
+            transform.Rotate(Vector3.up * Time.deltaTime * 20);
             transform.position = OriginPoint + v;
         }
        

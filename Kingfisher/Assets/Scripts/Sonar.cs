@@ -73,7 +73,11 @@ public class Sonar : MonoBehaviour
         if (other.CompareTag("Fish") && SonarActive)
         {
             other.GetComponent<Fish>().Following = true;
+            other.GetComponent<Fish>().isIdling = false;
+            
             other.gameObject.transform.LookAt(gameObject.transform);
+            
+
             if (!other.GetComponent<Fish>().ignorePlayer)
             {
                 other.gameObject.transform.position = Vector3.MoveTowards(other.gameObject.transform.position, transform.position, 1 * Time.deltaTime / 2);
@@ -85,6 +89,7 @@ public class Sonar : MonoBehaviour
         {
             Fish fish = other.GetComponent<Fish>();
             fish.IsScared = true;
+            fish.isIdling = false;
             fish.LastScared = DateTime.Now;
             Debug.Log("HET IS EEN WONDER " + fish.GetComponent<Fish>().IsScared);
             fish.gameObject.transform.LookAt(gameObject.transform);

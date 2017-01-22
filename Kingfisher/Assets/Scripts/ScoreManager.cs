@@ -21,6 +21,5 @@ public class ScoreManager : MonoBehaviour
 	{
 	    playTime = Time.time - startTime;
         GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>().text = "" + playTime;
-
     }
 }
