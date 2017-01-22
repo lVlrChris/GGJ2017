@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class Lilypad : MonoBehaviour
 {
     public Rijger bird;
+    private GameObject[] turtles;
 
 	// Use this for initialization
 	void Start () {
-       
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        turtles = GameObject.FindGameObjectsWithTag("Turtle");
+
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 
 		
 	}
@@ -38,7 +40,10 @@ public class Lilypad : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>().text = "Score " + scoreManager.score;
 
 
-
+                foreach (var turtle in turtles)
+                {
+                    turtle.GetComponent<Turtle>().PlayAnimation();
+                }
             }
 
             Debug.Log("LILYPAAAD");
