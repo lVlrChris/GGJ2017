@@ -91,7 +91,7 @@ public class Rijger : MonoBehaviour
             if (ListOfFish.Count <= 0)
             {
                 Debug.Log("GAME OVER");
-                Application.LoadLevel("Main Menu");
+                Application.LoadLevel("GameOver");
             }
             Debug.Log("JAJAJAJAJAJAJAJA");
             transform.position = (startPosition);

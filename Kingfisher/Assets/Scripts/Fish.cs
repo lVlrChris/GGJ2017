@@ -60,7 +60,7 @@ public class Fish : MonoBehaviour
         {
 
 
-            if (gameObject.transform.position.x < 3.5 && gameObject.transform.position.z < 2.6 && gameObject.transform.position.x >  -3.50 && gameObject.transform.position.z > -2.01)
+            if (gameObject.transform.position.x < 3.5 && gameObject.transform.position.z < 1.8 && gameObject.transform.position.x >  -3.50 && gameObject.transform.position.z > -2.01)
             {
                 var forward = Vector3.forward;
                 //forward.y = 0.82f;
