@@ -132,10 +132,10 @@ public class Fish : MonoBehaviour
         TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
 	    if (elapsedSpan.TotalSeconds >= ScaredCooldown)
 	    {
+            Debug.Log("ZOVEEL ELAPSED" + elapsedSpan.TotalSeconds);
 	        IsScared = false;
-            gameObject.transform.LookAt(OriginPoint);
-            transform.position = Vector3.MoveTowards(transform.position, OriginPoint,
-                    speed * Time.deltaTime);
+          //  gameObject.transform.LookAt(OriginPoint);
+        //    transform.position = Vector3.MoveTowards(transform.position, OriginPoint, speed * Time.deltaTime);
 
         }
 
@@ -188,6 +188,5 @@ public class Fish : MonoBehaviour
             transform.Rotate(Vector3.up * Time.deltaTime * 20);
             transform.position = OriginPoint + v;
         }
-       
     }
 }
