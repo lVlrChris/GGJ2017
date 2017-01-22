@@ -40,6 +40,11 @@ public class Turtle : MonoBehaviour
 	            
                 animationCount++;
 	        }
+	        else if(animationCount >= animationPlayTime)
+	        {
+	            animationPlaying = false;
+	            animationCount = 0;
+	        }
 	    }
 
         if (crying)
@@ -56,6 +61,7 @@ public class Turtle : MonoBehaviour
                 {
                     Debug.Log("STOP MET HUILEN PLS");
                     crying = false;
+                    tearsCount = 0;
                 }
 
             }
